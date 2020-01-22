@@ -85,8 +85,7 @@ def make_CarRacing_fixed_vector_features(settings_path: str, name: Optional[str]
         env = FrameCompressor(env)
         # -> dict[(84, 84, 3), (16)]
         env = OnlyVectorTaker(env)
-        env = ChannelSwapper(env)
-        # -> Box(19, 84, 84)
+        # -> Box(16)
         env = NumpyCaster(env)
         env._max_episode_steps = 250
 
