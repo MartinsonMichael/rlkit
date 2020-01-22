@@ -19,6 +19,12 @@ RUN pip3 install --trusted-host pypi.python.org -r /tmp/pip.packages
 
 # PUT ALL CHANGES UNDER THIS LINE
 
+RUN pip3 install distutils setuptools
+COPY setup.py /tmp/
+RUN python3 /tmp/setup.py
+
+# rlkit req above
+
 RUN mkdir /src
 WORKDIR /src
 ADD . ./
