@@ -1,4 +1,4 @@
-from envs.common_envs_utils import make_CarRacing_fixed_vector_features
+from envs.gym_car_intersect_fixed import CarRacingHackatonContinuousFixed
 
 import rlkit.torch.pytorch_util as ptu
 from rlkit.data_management.env_replay_buffer import EnvReplayBuffer
@@ -12,14 +12,8 @@ from rlkit.torch.torch_rl_algorithm import TorchBatchRLAlgorithm
 
 
 def experiment(variant):
-    # expl_env = NormalizedBoxEnv(HalfCheetahEnv())
-    # eval_env = NormalizedBoxEnv(HalfCheetahEnv())
-
-    expl_env = make_CarRacing_fixed_vector_features(
-        'envs/gym_car_intersect_fixed/settings_sets/env_settings__basic_small_rotation.json')()
-    eval_env = make_CarRacing_fixed_vector_features(
-        'envs/gym_car_intersect_fixed/settings_sets/env_settings__basic_small_rotation.json')()
-
+    expl_env = NormalizedBoxEnv(HalfCheetahEnv())
+    eval_env = NormalizedBoxEnv(HalfCheetahEnv())
     obs_dim = expl_env.observation_space.low.size
     action_dim = eval_env.action_space.low.size
 
@@ -84,6 +78,8 @@ def experiment(variant):
     algorithm.train()
 
 
+
+
 if __name__ == "__main__":
     # noinspection PyTypeChecker
     variant = dict(
@@ -111,5 +107,5 @@ if __name__ == "__main__":
         ),
     )
     setup_logger('name-of-experiment', variant=variant)
-    ptu.set_gpu_mode(True, 1)  # optionally set the GPU (default=False)
+    # ptu.set_gpu_mode(True)  # optionally set the GPU (default=False)
     experiment(variant)
