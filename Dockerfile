@@ -23,4 +23,4 @@ RUN pip3 install --trusted-host pypi.python.org -r /tmp/pip.packages
 RUN mkdir /src
 WORKDIR /src
 ADD . ./
-RUN python3 setup.py
+RUN python3 setup.py install
